@@ -1,0 +1,85 @@
+@use "sass:map";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+$typography-map: (
+    "display-large": (
+        "weight": 400,
+        "size": 57px,
+        "traking": -0.25px,
+        "line-height": 64px,
+    ),
+    "display-medium": (
+        "weight": 400,
+        "size": 45px,
+        "traking": 0px,
+        "line-height": 52px,
+    ),
+    "display-small": (
+        "weight": 400,
+        "size": 36px,
+        "traking": 0px,
+        "line-height": 44px,
+    ),
+    "headline-large": (
+        "weight": 400,
+        "size": 32px,
+        "traking": 0px,
+        "line-height": 40px,
+    ),
+    "headline-medium": (
+        "weight": 400,
+        "size": 28px,
+        "traking": 0px,
+        "line-height": 36px,
+    ),
+    "title-large": (
+        "weight": 400,
+        "size": 22px,
+        "traking": 0px,
+        "line-height": 28px,
+    ),
+    "body-large": (
+        "weight": 400,
+        "size": 16px,
+        "traking": 0.5px,
+        "line-height": 24x,
+    ),
+);
+
+@mixin _private-apply-font($font-style) {
+    $font-map: map.get($typography-map, $font-style);
+
+    font-weight: map.get($font-map, "weight");
+    font-size: map.get($font-map, "size");
+    letter-spacing: map.get($font-map, "traking");
+    line-height: map.get($font-map, "line-height");
+}
+
+@mixin typography-display-large {
+    @include _private-apply-font("display-large");
+}
+
+@mixin typography-display-medium {
+    @include _private-apply-font("display-medium");
+}
+
+@mixin typography-display-small {
+    @include _private-apply-font("display-small");
+}
+
+@mixin typography-headline-large {
+    @include _private-apply-font("headline-large");
+}
+
+@mixin typography-headline-medium {
+    @include _private-apply-font("headline-medium");
+}
+
+@mixin typography-title-large {
+    @include _private-apply-font("title-large");
+}
+
+@mixin typography-body-large {
+    @include _private-apply-font("body-large");
+}

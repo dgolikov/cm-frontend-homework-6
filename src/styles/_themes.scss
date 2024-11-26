@@ -1,0 +1,25 @@
+@use "sass:map";
+@use 'sass:list';
+
+$theme-colors-map: (
+    "primary": (light: #006399, dark: #94CCFF),
+    "primary-fixed": (light: #006399, dark: #006399),
+    "on-primary-fixed": (light: #FFFFFF, dark: #FFFFFF),
+    "surface": (light: #F9F9FC, dark: #111416),
+    "on-surface": (light: #1A1C1E, dark: #C6C6C9),
+    "background": (light: #FCFCFF, dark: #1A1C1E),
+    "on-background": (light: #1A1C1E, dark: #E2E2E5),
+    "inverse-surface": (light: #2F3033, dark: #F0F0F4),
+    "inverse-on-surface": (light: #F0F0F4, dark: #2F3033),
+);
+
+:root {
+    color-scheme: light dark;
+
+    @each $name, $color in $theme-colors-map {
+        --xenoforms-are-awesome-#{$name}: light-dark(
+            #{map.get($color, light)},
+            #{map.get($color, dark)}
+        );
+    }
+}

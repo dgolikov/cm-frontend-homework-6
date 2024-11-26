@@ -1,0 +1,177 @@
+@use "styles/index";
+
+section {
+  grid-column: 1/-1;
+  isolation: isolate;
+  padding: 100px 0;
+}
+
+.hero-section {
+  height: 100dvh;
+  padding: 0;
+  color: var(--xenoforms-are-awesome-on-primary-fixed);
+
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: 100px 1fr;
+
+  &__header {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1/-1;
+    align-items: center;
+
+    &__logo {
+      width: 168px;
+      height: 48px;
+      background-image: url('./assets/logo.svg');
+      background-size: cover;
+      margin: auto;
+      @include index.extra-small-layout(1, -1);
+      @include index.medium-small-layout(1, 4);
+    }
+
+    &__top-menu {
+      display: flex;
+      justify-content: space-between;
+      text-transform: uppercase;
+      @include index.typography-title-large();
+      @include index.extra-small-layout(1, -1);
+      @include index.medium-small-layout(7, -1);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: center;
+    height: 100%;
+    @include index.extra-small-layout(1, -1);
+    @include index.medium-small-layout(1, 9);
+    @include index.large-layout(1, 7);
+
+    h1 {
+      @include index.typography-display-large();
+    }
+
+    h2 {
+      @include index.typography-headline-large();
+    }
+
+    &__cta {
+      text-transform: uppercase;
+      height: 100px;
+      background-color: var(--xenoforms-are-awesome-primary-fixed);
+      color: var(--xenoforms-are-awesome-on-primary-fixed);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 16px;
+      box-sizing: border-box;
+      @include index.typography-display-small();
+
+      @include index.on-small {
+        @include index.typography-display-medium();
+      }
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://s3-alpha-sig.figma.com/img/5789/05ac/f6a90cb182a2ace4cb6fbef124c0b2ff?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pVss~191npXhC5zzpmlJf7bcdoqDVftxaVoONvgi3Mnswdf-h-JNSKNw6n68MDQTWWrdTO2W8yinM6sdu9qnkwOC55iMtR~vzqTXWxMH~C~qfY0FfwbH8xuwmf-BYPM7WUf9zffT-sNgh9u-lAH64mIl4q~wfzgDLlSuWnB5ZK3j5MnVByKoZe3lax1qODddmwCT2j9oSxldq9WVp6iOErsWvgoaQZuDYYH7zXU6JYS8mSDQHKXXteXT9pTAAkrn2xdxeBs3w2FZ5iXBAhVpJ78wOgSxEn3ZzWL4ZTo2OCx9ALwcaLmibXqvn5MGFmnk~Pjbn9a2tTSr8183J2DWxg__');
+    background-size: cover;
+    background-position: right;
+    z-index: -1;
+  }
+}
+
+.two-columns-section {
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: 24px;
+
+  &__section-image {
+    grid-area: "image";
+    min-height: 200px;
+    border-radius: 16px;
+    @include index.extra-small-layout(1, -1);
+  }
+
+  &__section-text {
+    grid-area: "text";
+    @include index.typography-body-large();
+    @include index.extra-small-layout(1, -1);
+
+    h3 {
+      margin-top: 0;
+      color: var(--xenoforms-are-awesome-primary);
+      @include index.typography-headline-medium();
+    }
+  }
+
+  &--image-left {
+    grid-template-areas: "image text";
+    .two-columns-section__section-image {
+      @include index.small-layout(1, 5);
+      @include index.large-layout(1, 5);
+    }
+
+    .two-columns-section__section-text {
+      @include index.small-layout(5, -1);
+      @include index.medium-small-layout(6, -1);
+    }
+  }
+
+  &--image-right {
+    grid-template-areas: "text image";
+    .two-columns-section__section-image {
+      @include index.small-layout(5, -1);
+      @include index.large-layout(8, -1);
+    }
+
+    .two-columns-section__section-text {
+      @include index.small-layout(1, 6);
+    }
+  }
+}
+
+html {
+  //overflow: hidden;
+}
+
+body {
+  //overflow: hidden;
+  overflow-x: hidden;
+}
+
+.layout-grid {
+  //overflow: hidden;
+  //overflow-x: hidden;
+}
+
+.intermediate-section {
+  position: relative;
+  //overflow: hidden;
+  span {
+    text-transform: uppercase;
+    color: var(--xenoforms-are-awesome-inverse-on-surface);
+    @include index.typography-display-medium();
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -99999px;
+    right: -99999px;
+    //left:0;
+    //right: 0;
+    //height: 100%;
+    background-color: var(--xenoforms-are-awesome-inverse-surface);
+    z-index: -1;
+  }
+}
+

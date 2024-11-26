@@ -1,0 +1,110 @@
+$breakpoint-extra-small: 599px;
+$breakpoint-small: 904px;
+$breakpoint-medium-small: 1239px;
+$breakpoint-medium: 1439px;
+
+@mixin on-large {
+    @media (width > #{$breakpoint-medium}) {
+        @content;
+    }
+}
+
+@mixin on-medium {
+    @media (width > #{$breakpoint-medium-small}) {
+        @content;
+    }
+}
+
+@mixin on-medium-small {
+    @media (width > #{$breakpoint-small}) {
+        @content;
+    }
+}
+
+@mixin on-small {
+    @media (width > #{$breakpoint-extra-small}) {
+        @content;
+    }
+}
+
+@mixin on-extra-small {
+    @content;
+}
+
+@mixin large-layout($column-start, $column-end) {
+    @include on-large {
+        grid-column-start: $column-start;
+        grid-column-end: $column-end;
+    }
+}
+
+@mixin medium-layout($column-start, $column-end) {
+    @include on-medium {
+        grid-column-start: $column-start;
+        grid-column-end: $column-end;
+    }
+}
+
+@mixin medium-small-layout($column-start, $column-end) {
+    @include on-medium-small {
+        grid-column-start: $column-start;
+        grid-column-end: $column-end;
+    }
+}
+
+@mixin small-layout($column-start, $column-end) {
+    @include on-small {
+        grid-column-start: $column-start;
+        grid-column-end: $column-end;
+    }
+}
+
+@mixin extra-small-layout($column-start, $column-end) {
+    @include on-extra-small {
+        grid-column-start: $column-start;
+        grid-column-end: $column-end;
+    }
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+body {
+  display: grid;
+  position: relative;
+  overflow-x: hidden;
+
+  .layout-grid {
+    display: grid;
+    grid-auto-rows: min-content;
+    column-gap: 24px;
+    margin: 0 16px;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (width > #{$breakpoint-extra-small}) {
+      margin: 0 32px;
+      grid-template-columns: repeat(8, 1fr);
+    }
+
+    @media (width > #{$breakpoint-small}) {
+      margin: 0 auto;
+      width: 840px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    @media (width > #{$breakpoint-medium-small}) {
+      margin: 0 200px;
+    }
+
+    @media (width > #{$breakpoint-medium}) {
+      margin: 0 auto;
+      width: 1140px;
+    }
+  }
+}
