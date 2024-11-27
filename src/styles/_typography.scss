@@ -43,8 +43,14 @@ $typography-map: (
         "weight": 400,
         "size": 16px,
         "traking": 0.5px,
-        "line-height": 24x,
+        "line-height": 24px,
     ),
+    "body-medium": (
+        "weight": 400,
+        "size": 14px,
+        "traking": 0.25px,
+        "line-height": 20px,
+    )
 );
 
 @mixin _private-apply-font($font-style) {
@@ -82,4 +88,8 @@ $typography-map: (
 
 @mixin typography-body-large {
     @include _private-apply-font("body-large");
+}
+
+@mixin typography-body-medium {
+    @include _private-apply-font("body-medium");
 }

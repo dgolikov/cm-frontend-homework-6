@@ -1,18 +1,58 @@
 @use "styles/index";
 
+@mixin default-section-image {
+  min-height: 200px;
+  border-radius: 16px;
+  @include index.extra-small-layout(1, -1);
+}
+
+@mixin default-section-text {
+  @include index.typography-body-large();
+  @include index.extra-small-layout(1, -1);
+
+  h3 {
+    margin-top: 0;
+    color: var(--xenoforms-are-awesome-primary);
+    @include index.typography-headline-medium();
+  }
+}
+
+@mixin fullscreen-text {
+  grid-column: 1 / -1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@mixin primary-action-button {
+  text-transform: uppercase;
+  height: 100px;
+  background-color: var(--xenoforms-are-awesome-primary-fixed);
+  color: var(--xenoforms-are-awesome-on-primary-fixed);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  box-sizing: border-box;
+  @include index.typography-display-small();
+
+  @include index.on-small {
+    @include index.typography-display-medium();
+  }
+}
+
 section {
+  display: grid;
+  grid-template-columns: subgrid;
   grid-column: 1/-1;
   isolation: isolate;
   padding: 100px 0;
+  row-gap: 24px;
 }
 
 .hero-section {
   height: 100dvh;
   padding: 0;
   color: var(--xenoforms-are-awesome-on-primary-fixed);
-
-  display: grid;
-  grid-template-columns: subgrid;
   grid-template-rows: 100px 1fr;
 
   &__header {
@@ -60,20 +100,7 @@ section {
     }
 
     &__cta {
-      text-transform: uppercase;
-      height: 100px;
-      background-color: var(--xenoforms-are-awesome-primary-fixed);
-      color: var(--xenoforms-are-awesome-on-primary-fixed);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 16px;
-      box-sizing: border-box;
-      @include index.typography-display-small();
-
-      @include index.on-small {
-        @include index.typography-display-medium();
-      }
+      @include primary-action-button();
     }
   }
 
@@ -89,34 +116,21 @@ section {
 }
 
 .two-columns-section {
-  display: grid;
-  grid-template-columns: subgrid;
-  row-gap: 24px;
+  grid-auto-flow: column dense;
 
   &__section-image {
-    grid-area: "image";
-    min-height: 200px;
-    border-radius: 16px;
-    @include index.extra-small-layout(1, -1);
+    @include default-section-image();
   }
 
   &__section-text {
-    grid-area: "text";
-    @include index.typography-body-large();
-    @include index.extra-small-layout(1, -1);
-
-    h3 {
-      margin-top: 0;
-      color: var(--xenoforms-are-awesome-primary);
-      @include index.typography-headline-medium();
-    }
+    color: var(--xenoforms-are-awesome-on-surface);
+    @include default-section-text();
   }
 
   &--image-left {
-    grid-template-areas: "image text";
     .two-columns-section__section-image {
       @include index.small-layout(1, 5);
-      @include index.large-layout(1, 5);
+      @include index.medium-small-layout(1, 5);
     }
 
     .two-columns-section__section-text {
@@ -126,52 +140,120 @@ section {
   }
 
   &--image-right {
-    grid-template-areas: "text image";
     .two-columns-section__section-image {
       @include index.small-layout(5, -1);
-      @include index.large-layout(8, -1);
+      @include index.medium-small-layout(7, -1);
     }
 
     .two-columns-section__section-text {
-      @include index.small-layout(1, 6);
+      @include index.small-layout(1, 5);
+      @include index.medium-small-layout(1, 6);
     }
   }
 }
 
-html {
-  //overflow: hidden;
-}
+.inverse-section {
+  @include index.fullscreen-background-color(var(--xenoforms-are-awesome-inverse-surface));
+   color: var(--xenoforms-are-awesome-inverse-on-surface);
 
-body {
-  //overflow: hidden;
-  overflow-x: hidden;
-}
-
-.layout-grid {
-  //overflow: hidden;
-  //overflow-x: hidden;
-}
-
-.intermediate-section {
-  position: relative;
-  //overflow: hidden;
-  span {
-    text-transform: uppercase;
-    color: var(--xenoforms-are-awesome-inverse-on-surface);
+  &__heading {
+    @include fullscreen-text();
     @include index.typography-display-medium();
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    left: -99999px;
-    right: -99999px;
-    //left:0;
-    //right: 0;
-    //height: 100%;
-    background-color: var(--xenoforms-are-awesome-inverse-surface);
-    z-index: -1;
+  &__cta {
+    @include primary-action-button();
+
+    & {
+      @include index.extra-small-layout(1, -1);
+      @include index.medium-small-layout(3, 11);
+      @include index.large-layout(4, 10);
+    }
+  }
+
+  &__credits {
+    @include index.typography-body-medium();
+    @include index.extra-small-layout(3, -1);
+    @include index.small-layout(6, -1);
+    @include index.medium-small-layout(8, -1);
+
+    * {
+      display: block;
+      text-align: left;
+    }
   }
 }
 
+.variant-section {
+  @include index.fullscreen-background-color(var(--xenoforms-are-awesome-surface-variant));
+
+  p {
+    color: var(--xenoforms-are-awesome-on-surface-variant);
+    @include fullscreen-text();
+    @include index.typography-body-large();
+    @include index.medium-small-layout(4, -1);
+  }
+}
+
+.secondary-section {
+  grid-auto-flow: row dense;
+  @include index.fullscreen-background-color(var(--xenoforms-are-awesome-secondary-container));
+
+  &__section-image {
+    @include default-section-image();
+    @include index.small-layout(1, 5);
+    @include index.medium-small-layout(1, 6);
+  }
+
+  &__section-text {
+    color: var(--xenoforms-are-awesome-on-secondary-container);
+    @include default-section-text();
+
+    @include index.on-small {
+      grid-column: span 4;
+    }
+
+    @include index.on-medium-small {
+      grid-column: span 6;
+    }
+
+    &--fixed {
+      @include index.medium-small-layout(7, -1);
+    }
+  }
+}
+
+.primary-section {
+  @include index.fullscreen-background-color(var(--xenoforms-are-awesome-primary-container));
+  * {
+    display: block;
+    text-align: center;
+    grid-column: 1 / -1;
+    color: var(--xenoforms-are-awesome-on-primary-container);
+  }
+
+  &__text-small {
+    @include index.typography-display-small();
+  }
+
+  &__text-medium {
+    @include index.typography-display-medium();
+  }
+
+  &__text-large {
+    @include index.typography-display-large();
+  }
+}
+
+.logo-section {
+  &__logo {
+    width: 100%;
+    aspect-ratio: 2.06;
+    background-image: url('./assets/logo_full.svg');
+    background-size: cover;
+    margin: auto;
+    @include index.extra-small-layout(1, -1);
+    @include index.medium-small-layout(3, 11);
+    @include index.large-layout(4, 10);
+  }
+}

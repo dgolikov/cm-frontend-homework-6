@@ -7,10 +7,16 @@ $theme-colors-map: (
     "on-primary-fixed": (light: #FFFFFF, dark: #FFFFFF),
     "surface": (light: #F9F9FC, dark: #111416),
     "on-surface": (light: #1A1C1E, dark: #C6C6C9),
+    "surface-variant": (light: #DEE3EB, dark: #42474E),
+    "on-surface-variant": (light: #42474E, dark: #DEE3EB),
     "background": (light: #FCFCFF, dark: #1A1C1E),
     "on-background": (light: #1A1C1E, dark: #E2E2E5),
     "inverse-surface": (light: #2F3033, dark: #F0F0F4),
     "inverse-on-surface": (light: #F0F0F4, dark: #2F3033),
+    "secondary-container": (light: #D4E4F6, dark: #394857),
+    "on-secondary-container": (light: #0D1D2A, dark: #D4E4F6),
+    "primary-container": (light: #CDE5FF, dark: #004B74),
+    "on-primary-container": (light: #001D32, dark: #CDE5FF),
 );
 
 :root {

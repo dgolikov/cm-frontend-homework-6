@@ -66,6 +66,21 @@ $breakpoint-medium: 1439px;
     }
 }
 
+@mixin fullscreen-background-color($color) {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -50dvw;
+      right: -50dvw;
+      background-color: $color;
+      z-index: -1;
+    }
+}
+
 html,
 body {
     margin: 0;
